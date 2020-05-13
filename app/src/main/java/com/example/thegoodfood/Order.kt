@@ -2,6 +2,7 @@ package com.example.thegoodfood
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
@@ -58,10 +59,9 @@ class Order : AppCompatActivity() {
         list = intent.extras!!.get("list") as ArrayList<fooditemModel>
         db = FirebaseDatabase.getInstance().reference
         myCalendar = Calendar.getInstance();
-        val date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-            myCalendar.set(Calendar.YEAR, year)
-            myCalendar.set(Calendar.MONTH, monthOfYear)
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+        val date = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+            myCalendar.set(Calendar.HOUR,hourOfDay)
+            myCalendar.set(Calendar.MINUTE, minute)
             updateLabel()
         }
         var price = 0
@@ -73,10 +73,8 @@ class Order : AppCompatActivity() {
         totalprice.setText("$total")
         itmes.setText(list.size.toString())
         deldate.setOnClickListener {
-            DatePickerDialog(
-                this, date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
-                myCalendar[Calendar.DAY_OF_MONTH]
-            ).show()
+            TimePickerDialog(
+                this, date, myCalendar[Calendar.HOUR_OF_DAY], myCalendar[Calendar.MINUTE],false).show()
         }
         people.setText("1")
         people.addTextChangedListener(object : TextWatcher {
@@ -130,6 +128,7 @@ class Order : AppCompatActivity() {
                 hashMap["del"] = deldate.text.toString().trim()
                 hashMap["ordereddate"] = Calendar.getInstance().time.toString().trim()
                 hashMap["people"] = people.text.toString().trim()
+                hashMap["status"]="0"
                 ref.setValue(hashMap).addOnSuccessListener {
                     progorder.visibility = View.GONE
                     list.forEach {
@@ -148,7 +147,7 @@ class Order : AppCompatActivity() {
 
 
     private fun updateLabel() {
-        val myFormat = "MM/dd/yy" //In which you need put here
+        val myFormat = "hh:mm a" //In which you need put here
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         deldate.setText(sdf.format(myCalendar.getTime()))
     }

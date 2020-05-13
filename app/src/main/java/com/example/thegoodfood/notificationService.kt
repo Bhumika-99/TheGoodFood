@@ -34,9 +34,8 @@ class notificationService : FirebaseMessagingService() {
                 .child(FirebaseAuth.getInstance().currentUser?.uid.toString())
                 .child("notification")
                 .child(UUID.randomUUID().toString())
-                .setValue(notif_body).addOnSuccessListener {
-                    createNotification(notif_title, notif_body)
-                }
+                .setValue(notif_body)
+            createNotification(notif_title, notif_body)
         }
     }
 

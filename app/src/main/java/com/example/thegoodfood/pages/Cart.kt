@@ -91,8 +91,8 @@ class Cart : Fragment() {
                             )
                             fooditemModel.setid(ds.key.toString())
                             list.add(fooditemModel)
-                            adapter.update(list)
                         }
+                        adapter.update(list)
                         if (list.isEmpty()) {
                             msg.visibility = View.VISIBLE
                         } else {

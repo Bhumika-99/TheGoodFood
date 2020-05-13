@@ -109,7 +109,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="20dp"
                     android:focusable="false"
-                    android:hint="Enter Date of Delivery"
+                    android:hint="Enter Time of Delivery"
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
