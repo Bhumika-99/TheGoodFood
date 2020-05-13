@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".pages.Cart">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarcart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/redtheme"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarcart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/redtheme"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cart"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="25sp"/>
+    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <include layout="@layout/show_more_details"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/cartrecy"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:id="@+id/msg"
+        android:text="Your cart is empty,Order some delicious food!!"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/round_btn"
+        android:text="Order Now"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:id="@+id/pay"
+        />
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
