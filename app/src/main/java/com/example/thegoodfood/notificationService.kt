@@ -28,13 +28,7 @@ class notificationService : FirebaseMessagingService() {
         if (remoteMessage?.notification != null) {
             Log.d("firebase Notification", remoteMessage!!.notification!!.body.toString())
             notif_title = remoteMessage!!.notification!!.title.toString()
-            notif_title = remoteMessage!!.notification!!.body.toString()
-            val db = FirebaseDatabase.getInstance().reference
-            db.child("users")
-                .child(FirebaseAuth.getInstance().currentUser?.uid.toString())
-                .child("notification")
-                .child(UUID.randomUUID().toString())
-                .setValue(notif_body)
+            notif_body = remoteMessage!!.notification!!.body.toString()
             createNotification(notif_title, notif_body)
         }
     }
@@ -45,9 +39,16 @@ class notificationService : FirebaseMessagingService() {
         var notif = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(notif_title)
             .setContentText(notif_body)
+            .setSmallIcon(R.drawable.logo)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
-
+        val db = FirebaseDatabase.getInstance().reference
+        db.child("users")
+            .child(FirebaseAuth.getInstance().currentUser?.uid.toString())
+            .child("notification")
+            .child(UUID.randomUUID().toString())
+            .child("msg")
+            .setValue(notif_body)
         var manage =
             applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 

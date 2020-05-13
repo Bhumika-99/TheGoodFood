@@ -70,7 +70,6 @@ class Cart : Fragment() {
     }
 
     fun getdata() {
-
         db.child("users")
             .child(FirebaseAuth.getInstance().currentUser!!.uid.toString())
             .child("cart").addValueEventListener(object : ValueEventListener {

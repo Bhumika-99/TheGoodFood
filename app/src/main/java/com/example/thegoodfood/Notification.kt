@@ -17,6 +17,7 @@ class Notification : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
         setSupportActionBar(toolbarnotif)
+        supportActionBar?.title=""
         list = ArrayList()
         adapter = NotificationAdapter(applicationContext, list)
         notifrec.layoutManager = LinearLayoutManager(applicationContext)
